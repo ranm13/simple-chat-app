@@ -1,4 +1,4 @@
-const socket = io.connect('https://cohort12-chat-rival.herokuapp.com/');
+const socket = io.connect('https://simple-chat-io.herokuapp.com/');
 const message = $('#message'),
       handler = $('#handler'),
       btn = $('#send'),
