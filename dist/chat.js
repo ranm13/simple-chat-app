@@ -1,19 +1,23 @@
 const socket = io.connect('https://simple-chat-io.herokuapp.com/');
 const message = $('#message'),
       handler = $('#handler'),
-      btn = $('#send'),
+      button = $('#send'),
       output = $('#output'),
       feedback = $('#feedback');
 
-btn.on('click', function(){
-    socket.emit('chat', {
+const sendMessage = function(){
+    let messageData = {
         message: message.val(),
         handler: handler.val()
-    });
+    }
+    socket.emit('chat', messageData);
     message.val(" ") 
-});
+}
+
+button.on('click', sendMessage);
 
 message.on('keypress', function(){
+    if(event.keyCode == 13) sendMessage() //pressing enter will also trigger sending a message
     socket.emit('typing', handler.val());
 })
 
